@@ -36,6 +36,7 @@ public class SecurityConfig  {
         .authorizeRequests()
         .antMatchers("/").permitAll()
         .antMatchers("/save").permitAll()
+        .antMatchers("/users").permitAll()
         .antMatchers("/h2/**").permitAll()
         .antMatchers("/admin").hasRole("ADMIN")
         .antMatchers("/user").hasAnyRole("ADMIN", "USER")

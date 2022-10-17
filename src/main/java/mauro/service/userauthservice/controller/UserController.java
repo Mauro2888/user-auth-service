@@ -1,5 +1,6 @@
 package mauro.service.userauthservice.controller;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mauro.service.userauthservice.entity.User;
 import mauro.service.userauthservice.service.UserService;
@@ -16,6 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
+
+  @GetMapping("/users")
+  public List<User> getAll(){
+    return userService.getAll();
+  }
 
   @PostMapping("save")
   public ResponseEntity<User>saveUser(@RequestBody User userDto){
