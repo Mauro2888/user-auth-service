@@ -5,16 +5,18 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import mauro.service.userauthservice.mapper.MapperClass;
 import mauro.service.userauthservice.entity.Role;
 import mauro.service.userauthservice.entity.User;
 import mauro.service.userauthservice.repository.UserRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+  private final MapperClass mapperClass;
   private final UserRepository userRepository;
 
   @PostConstruct
@@ -28,6 +30,8 @@ public class UserService {
     roleSet.add(role);
     user.setRoles(roleSet);
     userRepository.save(user);
+
+    System.out.println(mapperClass.toUserDto(user));
 
     User user2 = new User();
     user2.setUsername("user");
